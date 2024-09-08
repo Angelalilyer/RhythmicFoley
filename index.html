@@ -111,7 +111,9 @@
     <h2 style="text-align:center;"><b>Demos</b></h2>
 
     <div class="gallery">
-        <el-carousel indicator-position="outside" class="video-carousel-wrap">
+        <el-carousel indicator-position="outside"
+                     :autoplay="false"
+                     class="video-carousel-wrap">
             <el-carousel-item class="video-items-wrap" v-for="(video4, key) in videoGroups" :key="key">
                 <div class="video-item" v-for="(item, key2) in video4" :key="'v'+key2">
                     <h3 >{{ item.title }}</h3>
