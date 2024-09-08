@@ -1,0 +1,293 @@
+
+<!-- saved from url=(0029)https://dreambooth.github.io/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>FoleyCrafter</title>
+<link href="./foleycrafter/style.css" rel="stylesheet">
+</head>
+
+<body inject_svd="true">
+<div class="content"> 
+    <h1 style="display: flex; align-items: center; justify-content: space-around;">
+        <span><img src="foleycrafter/images/foleycrafter.png" alt="logo" style="height: 136px; margin: 0px 0px; padding: 0px 0px;"></span>
+        <strong style="margin: auto 0px; padding: auto 0px;">FoleyCrafter: Bring Silent Videos to Life with Lifelike and Synchronized Sounds</strong>
+    </h1>
+    <p id="authors">
+        <a href="https://ymzhang0319.github.io/">Yiming Zhang<sup>1</sup></a> 
+        <a href="https://www.yichenggu.com/">Yicheng Gu<sup>2</sup></a> 
+        <a href="https://zengyh1900.github.io/">Yanhong Zeng<sup>1 †</sup></a> 
+        <a href="https://github.com/LeoXing1996/">Zhening Xing<sup>1</sup></a> 
+        <a href="https://github.com/HeCheng0625">Yuancheng Wang<sup>2</sup></a> 
+        <br>
+        <a href="https://drwuz.com/">Zhizheng Wu<sup>2</sup></a> 
+        <a href="https://chenkai.site/">Kai Chen<sup>1 †</sup></a><br>
+        <br>
+        <span style="font-size: 18px">
+            <sup>1</sup>Shanghai AI Laboratory &nbsp;&nbsp;&nbsp;
+            <sup>2</sup>Chinese University of Hong Kong, Shenzhen &nbsp;&nbsp;&nbsp;
+            †Corresponding author
+        </span>
+    </p>
+    <!-- <div style="text-align: center; display: flex; justify-content: space-around;">
+        <a target="_blank" href="https://www.shlab.org.cn/">
+        <img src="foleycrafter/images/pjlab.jpg" alt="Institution" style="width: auto; height: 122px;">
+        </a>
+        <a target="_blank" href="https://www.cuhk.edu.cn/">
+        <img src="foleycrafter/images/cuhk.png" alt="Institution" style="width: auto; height: 80px; padding: 15px;">
+        </a>
+  </div> -->
+    <font size="+2">
+          <p style="text-align: center;">
+            <a href="https://arxiv.org/abs/2407.01494" target="_blank"><img src="foleycrafter/images/th.png" alt="arxiv" ,="" style="width: 21px;">[Paper]</a> &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://github.com/open-mmlab/foleycrafter" target="_blank"><img src="foleycrafter/images/github.png" alt="github" ,="" style="width: 21px;">[Code]</a> &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://huggingface.co/spaces/ymzhang319/FoleyCrafter" target="_blank"><img src="foleycrafter/images/hf.svg" alt="huggingface" ,="" style="width: 21px;">[Demo]</a> &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://youtu.be/7m4YLrSBOv0" target="_blank"><img src="foleycrafter/images/youtube.png" alt="YouTube" ,="" style="width: 21px;">[YouTube]</a> 
+          </p>
+    </font>
+</div>
+
+<div class="content">
+<h2 style="text-align: center;"><b>2-minute Video</b></h2>
+<p>FoleyCrafter is a text-based video-to-audio generation framework which can generate high-quality audios that are semantically relevant and temporally synchronized with the input videos.</p>
+<div style="text-align: center;">
+    <iframe width="960" height="540" src="https://www.youtube.com/embed/7m4YLrSBOv0?si=dpWlxJ1K2Gi3qyKi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+<br>
+<div style="text-align: center;"><b style="text-align: center;">Tips:</b> Foley is the reproduction of sound effects that are added to films, videos, and other media. Remember to turn up the volume!</div>
+</div>
+
+<div class="content">
+<h2 style="text-align:center;"><b>Abstract</b></h2>
+<p>
+We study Neural Foley, the automatic generation of high-quality sound effects synchronizing with videos, enabling an immersive audio-visual experience. Despite
+its wide range of applications, existing approaches encounter limitations when it comes to 
+simultaneously synthesizing <b>high-quality</b> and <b>video-aligned </b>(i.e.,, semantic relevant and temporal synchronized) sounds. To overcome these limitations,
+we propose <b>FoleyCrafter</b>, a novel framework that leverages a pre-trained text-to-audio model to ensure high-quality audio generation. FoleyCrafter comprises two
+key components: the <b>semantic adapter</b> for semantic alignment and the <b>temporal
+controller</b> for precise audio-video synchronization. The semantic adapter utilizes
+parallel cross-attention layers to condition audio generation on video features,
+producing realistic sound effects that are semantically relevant to the visual content.
+Meanwhile, the temporal controller incorporates an onset detector and a timestamp based adapter to achieve precise audio-video alignment. One notable advantage of FoleyCrafter is its compatibility with text prompts, enabling the use of text descriptions to achieve controllable and diverse video-to-audio generation according 
+to user intents. We conduct extensive quantitative and qualitative experiments on
+standard benchmarks to verify the effectiveness of FoleyCrafter. Models and codes are available at <a href="https://github.com/open-mmlab/FoleyCrafter">Github</a>.
+</p>
+</div>
+
+<div class="content">
+<h2 style="text-align:center;"><b>Method</b></h2>
+<img src="foleycrafter/images/overview.jpg" alt="overview of FoleyCrafter" style="width:100%;">
+<br>
+<br>
+FoleyCrafter is built upon a pre-trained text-to-audio
+(T2A) generator, ensuring high-quality audio synthesis. It comprises two main components: the
+semantic adapter (S.A.) and the temporal controller, which includes a timestamp detector (T.D.) and a
+temporal adapter (T.A.). Both the semantic adapter and the temporal controller are trainable modules
+that take videos as input to synthesize audio, with audio supervision for optimization. The T2A
+model remains fixed to maintain its established capability for high-quality audio synthesis.
+</div>
+
+<div class="content">
+<h2 style="text-align:center;"><b>Gallery</b></h2>
+
+<p style="text-align: center;"><b style="font-size: 20px; color: rgb(229, 48, 48);">More new interesting cases are at link: <a href="https://x.com/ymzhang319" target="_blank"><img src="foleycrafter/images/X_icon.png" style="height: 20px;" alt=""></a>
+    and under the tag <a href="https://x.com/search?q=%23FoleyCrafter&src=typed_query" target="_blank">#FoleyCrafter</a> in twitter!</b></p>
+
+<div class="gallery">
+
+    <h3>Audio Synthesis for Anime</h3>
+    <video style="width: 49%;" controls>
+        <source src="foleycrafter/videos/output/anime/6.mp4">
+    </video> 
+    <video style="width: 49%;" controls>
+        <source src="foleycrafter/videos/output/anime/0.mp4">
+    </video> 
+    <video style="width: 49%;" controls>
+        <source src="foleycrafter/videos/output/anime/4.mp4">
+    </video> 
+    <video style="width: 49%;" controls>
+        <source src="foleycrafter/videos/output/anime/3.mp4">
+    </video> 
+    <video style="width: 49%;" controls>
+        <source src="foleycrafter/videos/output/anime/1.mp4">
+    </video> 
+    <video style="width: 49%;" controls>
+        <source src="foleycrafter/videos/output/anime/5.mp4">
+    </video> 
+
+    <h3>Audio Synthesis for Sora Videos</h3>
+
+    <div class="row">
+        <video style="width: 49%;" controls>
+            <source src="foleycrafter/videos/output/sora/video/0.mp4">
+        </video>
+        <video style="width: 49%;" controls>
+            <source src="foleycrafter/videos/output/sora/video/1.mp4">
+        </video>
+    </div>
+    <div class="row">
+        <video style="width: 49%;" controls>
+            <source src="foleycrafter/videos/output/sora/video/2.mp4">
+        </video>
+        <video style="width: 49%;" controls>
+            <source src="foleycrafter/videos/output/sora/video/4.mp4">
+        </video> 
+    </div>
+
+    <h3>Audio Synthesis for VGGSound Videos</h3>
+    <div style="padding: 0 0; text-align: center; display: flex; justify-content: space-around;">
+        <p style="text-align: center;">Ground Truth</p>
+        <p style="text-align: center;">Generated Audios</p>
+    </div>
+    <div class="row">
+        <video style="width: 49%;" controls>
+            <source src="foleycrafter/videos/output/vggsound/gt/0.mp4">
+        </video>
+        <video style="width: 49%;" controls>
+            <source src="foleycrafter/videos/output/vggsound/0.mp4">
+        </video>
+    </div>
+    <div class="row">
+        <video style="width: 49%;" controls>
+            <source src="foleycrafter/videos/output/vggsound/gt/1.mp4">
+        </video>
+        <video style="width: 49%;" controls>
+            <source src="foleycrafter/videos/output/vggsound/1.mp4">
+        </video>
+    </div>
+    <div class="row">
+        <video style="width: 49%;" controls>
+            <source src="foleycrafter/videos/output/vggsound/gt/2.mp4">
+        </video>
+        <video style="width: 49%;" controls>
+            <source src="foleycrafter/videos/output/vggsound/2.mp4">
+        </video>
+    </div>
+    <div class="row">
+        <video style="width: 49%;" controls>
+            <source src="foleycrafter/videos/output/vggsound/gt/3.mp4">
+        </video>
+        <video style="width: 49%;" controls>
+            <source src="foleycrafter/videos/output/vggsound/3.mp4">
+        </video>
+    </div>
+    
+    <h3>Audio Synthesis Temporally Aligned with Visual Cues</h3>
+    <div style="padding: 0 0; text-align: center; display: flex; justify-content: space-around;">
+        <p style="text-align: center;">Ground Truth</p>
+        <p style="text-align: center;">Generated Audios</p>
+    </div>
+    <div class="row">
+        <video style="width: 49%;" controls>
+            <source src="foleycrafter/videos/output/avsync/gt/0.mp4">
+        </video>
+        <video style="width: 49%;" controls>
+            <source src="foleycrafter/videos/output/avsync/video/0.mp4">
+        </video>
+    </div>
+    <div class="row">
+        <video style="width: 49%;" controls>
+            <source src="foleycrafter/videos/output/avsync/gt/3.mp4">
+        </video>
+        <video style="width: 49%;" controls>
+            <source src="foleycrafter/videos/output/avsync/video/3.mp4">
+        </video>
+    </div>
+    <div class="row">
+        <video style="width: 49%;" controls>
+            <source src="foleycrafter/videos/output/avsync/gt/2.mp4">
+        </video>
+        <video style="width: 49%;" controls>
+            <source src="foleycrafter/videos/output/avsync/video/2.mp4">
+        </video>
+    </div>
+    <div class="row">
+        <video style="width: 49%;" controls>
+            <source src="foleycrafter/videos/output/avsync/gt/1.mp4">
+        </video>
+        <video style="width: 49%;" controls>
+            <source src="foleycrafter/videos/output/avsync/video/1.mp4">
+        </video>
+    </div>
+
+    <h3>Text-based Video to Audio Generation</h3>
+    <div style="padding: 0 0; text-align: center; display: flex; justify-content: space-around">
+        <p style="text-align: center; width: 30%;">Without Prompt</p>
+        <p style="text-align: center; width: 30%;">Prompt: <b>seagulls</b></p>
+        <p style="text-align: center; width: 30%;">Prompt: <b>background music</b></p>
+    </div>
+    <div class="row">
+        <video style="width: 30%; text-align: center;" controls>
+            <source src="foleycrafter/videos/output/PromptControl/case2/video/0.mp4">
+        </video>
+        <video style="width: 30%; text-align: center;" controls>
+            <source src="foleycrafter/videos/output/PromptControl/case2_prompt/video/0.mp4">
+        </video>
+        <video style="width: 30%; text-align: center;" controls>
+            <source src="foleycrafter/videos/output/PromptControl/case2_prompt/video/1.mp4">
+        </video>
+    </div>
+    <div style="padding: 0 0; text-align: center; display: flex; justify-content: space-around;">
+        <p style="text-align: center; width: 30%;">Without Prompt</p>
+        <p style="text-align: center; width: 30%;">Prompt: <b>noisy, people talking</b></p>
+        <p style="text-align: center; width: 30%;">Prompt: <b>whistle</b></p>
+    </div>
+    <div class="row">
+        <video style="width: 30%;" controls>
+            <source src="foleycrafter/videos/output/PromptControl/case1/video/0.mp4">
+        </video>
+        <video style="width: 30%;" controls>
+            <source src="foleycrafter/videos/output/PromptControl/case1_prompt/video/0.mp4">
+        </video>
+        <video style="width: 30%;" controls>
+            <source src="foleycrafter/videos/output/PromptControl/case1_prompt/video/2.mp4">
+        </video>
+    </div>
+    <div style="padding: 0 0; text-align: center; display: flex; justify-content: space-around;">
+        <p style="text-align: center; width: 30%;">Without Prompt</p>
+        <p style="text-align: center; width: 30%;">Negative Prompt: <b>river flows</b></p>
+        <p style="text-align: center; width: 30%;">Negative Prompt: <b>birds warbling</b></p>
+    </div>
+    <div class="row">
+        <video style="width: 30%;" controls>
+            <source src="foleycrafter/videos/output/PromptControl/case3/video/0.mp4">
+        </video>
+        <video style="width: 30%;" controls>
+            <source src="foleycrafter/videos/output/PromptControl/case3_nprompt/video/0.mp4">
+        </video>
+        <video style="width: 30%;" controls>
+            <source src="foleycrafter/videos/output/PromptControl/case3_nprompt/video/1.mp4">
+        </video>
+    </div>
+    <div style="padding: 0 0; text-align: center; display: flex; justify-content: space-around;">
+        <p style="text-align: center; width: 30%;">Without Prompt</p>
+        <p style="text-align: center; width: 30%;">Negative Prompt: <b>wind noise</b></p>
+        <p style="text-align: center; width: 30%;">Prompt: <b>horse neighing</b></p>
+    </div>
+    <div class="row">
+        <video style="width: 30%;" controls>
+            <source src="foleycrafter/videos/output/PromptControl/case4/video/0.mp4">
+        </video>
+        <video style="width: 30%;" controls>
+            <source src="foleycrafter/videos/output/PromptControl/case4_nprompt/video/0.mp4">
+        </video>
+        <video style="width: 30%;" controls>
+            <source src="foleycrafter/videos/output/PromptControl/case4_nprompt/video/1.mp4">
+        </video> 
+    </div> 
+</div>
+
+</div>
+<div class="content">
+  <h2 style="text-align:center; margin: 0 auto;"><strong>BibTex</strong></h2>
+  <code>
+    @article{zhang2024foleycrafter, <br>
+    title={FoleyCrafter: Bring Silent Videos to Life with Lifelike and Synchronized Sounds}, <br>
+    author={Yiming Zhang and Yicheng Gu and Yanhong Zeng and Zhening Xing and Yuancheng Wang and Zhizheng Wu and Kai Chen}, <br>
+    year={2024} <br>
+    }
+   </code>
+</div>
+
+<div id="popupMenu" style="display: none;"></div>
+</body>
+</html>
