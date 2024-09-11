@@ -113,12 +113,11 @@
     <br>
     <br>
    Providing a silent video, Rhythmic Foley can generate audio that is both semantically aligned and precisely timed to match key moments. 
-   Our framework is based on the video-to-audio synthesis. During the training phase, we employed an audio-visual alignment encoder to 
-    encode the data and separately trained two adapters. The  semantic alignment adapter integrates audio event information from Mini-Gemini 
-    with the approximate temporal intervals of these events, as detected by a visual detector. Meanwhile, the temporal synchronizationadapter 
-    receives rhythmic cues extracted by an energy detector. In the inference phase, to meet more refined generation requirements, users can 
-    leverage our annotation tool as temporal conditional input. By merging these adapters and tuning their respective weights, models can 
-    generate high-quality sound effects.
+   Our framework is based on the video-to-audio synthesis. During the training phase, we employed an audio-visual alignment encoder to encode
+   the data and separately trained two adapters. The  semantic alignment adapter integrates audio event information from Mini-Gemini with the 
+   approximate temporal intervals of these events, as detected by a visual detector. Meanwhile, the temporal synchronizationadapter receives 
+   rhythmic cues extracted by an energy detector. In the inference phase, to meet more refined generation requirements, users can leverage our 
+   annotation tool as temporal conditional input. By merging these adapters and tuning their respective weights, models can generate high-quality sound effects.
 </div>
 
 <div class="content" id="videoLists">
